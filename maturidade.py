@@ -72,7 +72,7 @@ with gov:
     "status":"Status",
     "observacoes":"Observações"
     })
-    GOV = GOV.drop(["Criado em"])
+    GOV = GOV.drop(columns=["Criado em"])
     st.dataframe(GOV)
     FORM = st.form('Novo Reg. Gov', clear_on_submit = True)
     FORM.subheader('Novo registro em Governança')
