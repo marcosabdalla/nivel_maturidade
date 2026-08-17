@@ -27,6 +27,18 @@ def le_gov():
     ''', conexao)
     return dados
 
+def inserir_pessoa(nome, cargo):
+    cur = conexao.cursor()
+    cur.execute(
+        """
+        INSERT INTO "PESSOAS" (nome, cargo)
+        VALUES (%s, %s)
+        """,
+        (nome, cargo)
+    )
+    conexao.commit()
+    cur.close()
+
 
 
 # ── Interface Streamlit ──────────────────────────────
@@ -51,6 +63,13 @@ with tab1:
 
 with tab5:
     st.dataframe(le_pessoas())
+
+    FORM = st.form('Inserir novo funcionário', clear_on_submit=True)
+    nome = FORM.text_input("Nome:")
+    cargo = FORM.text_input("Cargo:")
+    bt1 = FORM.form_submit_button('Inserir')
+    if bt1:
+        inserir_pessoa(nome, cargo)
     
 
 
