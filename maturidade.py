@@ -39,7 +39,17 @@ def le_gov2():
         suffixes=("", "_pessoa")
     )
     dados = dados.drop(columns=["responsavel"]).rename(columns={"nome": "responsavel"})
-    dados = dados.drop(columns=["id_pessoa"])
+    dados = dados.drop(columns=["id_pessoa","criado_em"])
+    dados = dados.rename(columns={
+    "id": "ID",
+    "indicador": "Indicador",
+    "meta":"Meta",
+    "frequencia":"Frequência",
+    "responsavel":"Responsável",
+    "data_execucao":"Data Execução",
+    "status":"Status",
+    "observacoes":"Observações"
+    })
 
     return dados
 
