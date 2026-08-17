@@ -65,6 +65,7 @@ with tab5:
     st.dataframe(le_pessoas())
 
     FORM = st.form('Inserir novo funcionário', clear_on_submit=True)
+    FORM.subheader('Inserir novo funcionário:')
     nome = FORM.text_input("Nome:")
     cargo = FORM.text_input("Cargo:")
     bt1 = FORM.form_submit_button('Inserir')
