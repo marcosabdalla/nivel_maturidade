@@ -89,24 +89,7 @@ nomes = pessoas["nome"]
 gov, infra, curr, comm, pess = st.tabs(["Governança","Infraestrutura","Curriculo","Comunidade","Pessoas"])
 
 with gov:
-    GOV = le_gov()
-    GOV = GOV.rename(columns={
-    "id": "ID",
-    "criado_em": "Criado em",
-    "indicador": "Indicador",
-    "meta":"Meta",
-    "frequencia":"Frequência",
-    "responsavel":"Responsável",
-    "data_execucao":"Data Execução",
-    "status":"Status",
-    "observacoes":"Observações"
-    })
-    GOV = GOV.drop(columns=["Criado em"])
-    st.dataframe(GOV)
-
     st.dataframe(le_gov2())
-
-    
     
     FORM = st.form('Novo Reg. Gov', clear_on_submit = True)
     FORM.subheader('Novo registro em Governança')
