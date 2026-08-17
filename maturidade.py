@@ -28,15 +28,16 @@ def le_gov():
     return dados
 
 def le_gov2():
-    dados = pd.read_sql_query('''
-    SELECT * FROM "GOVERNANCA"
-    ''', conexao)
+    dados = pd.read_sql_query('SELECT * FROM "GOVERNANCA"', conexao)
+    pessoas = pd.read_sql_query('SELECT "id", "nome" FROM "PESSOAS"', conexao)
 
-    pessoas = pd.read_sql_query('''
-    SELECT "id", "nome" FROM "PESSOAS"
-    ''', conexao)
-
-    dados = dados.merge(pessoas, left_on="responsavel", right_on="id", how="left")
+    dados = dados.merge(
+        pessoas,
+        left_on="responsavel",
+        right_on="id",
+        how="left",
+        suffixes=("", "_pessoa")
+    )
     dados = dados.drop(columns=["responsavel", "id"]).rename(columns={"nome": "responsavel"})
 
     return dados
