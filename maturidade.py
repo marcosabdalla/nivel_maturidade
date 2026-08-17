@@ -76,9 +76,19 @@ with gov:
     "observacoes":"Observações"
     })
     GOV = GOV.drop(columns=["Criado em"])
+    st.dataframe(GOV)
+
+    tabela_03 = GOV.merge(
+    pessoas[["id", "nome"]],
+    left_on="Responsável",
+    right_on="id",
+    how="left",
+    suffixes=("", "_tab1"),
+    )
+    st.dataframe(tabela_03)
 
     
-    st.dataframe(GOV)
+    
     FORM = st.form('Novo Reg. Gov', clear_on_submit = True)
     FORM.subheader('Novo registro em Governança')
     col1, col2 = FORM.columns(2)
