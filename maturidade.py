@@ -104,7 +104,7 @@ with gov:
         mt = st.text_input('Meta')
         Pess = st.selectbox('Responsável', options = nomes)
         idx = pessoas[pessoas["nome"] == Pess].index
-        idx_pess = pessoa.loc[idx,"id"]
+        idx_pess = pessoas.loc[idx,"id"]
         st.write(idx_pess)
         stat = ["Não iniciado","Em andamento","Concluido"]
         Stat = st.selectbox('Status', options = stat)
