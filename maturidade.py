@@ -33,7 +33,7 @@ FROM information_schema.tables
 WHERE table_schema = 'public'
 ORDER BY table_name;
 """
-tables_df = pd.read_sql(query, engine)
+tables_df = pd.read_sql(query, conexao)
 st.dataframe(tables_df)
 
 st.write(IDs)
