@@ -61,8 +61,9 @@ gov, infra, curr, comm, pess = st.tabs(["Governança","Infraestrutura","Curricul
 
 with gov:
     GOV = le_gov()
-    GOV.columns["ID","Criado em","Indicador","Meta","Frequência","Responsável","data_execucao","Status","Observações"]
-    GOV = GOV.drop(["Criado em"])
+    
+    #GOV.columns["ID","Criado em","Indicador","Meta","Frequência","Responsável","data_execucao","Status","Observações"]
+    #GOV = GOV.drop(["Criado em"])
     st.dataframe(GOV)
     FORM = st.form('Novo Reg. Gov', clear_on_submit = True)
     FORM.subheader('Novo registro em Governança')
