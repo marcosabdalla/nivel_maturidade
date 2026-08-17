@@ -64,6 +64,8 @@ with gov:
     col1, col2 = FORM.columns(2)
     with col1:
         indi = st.text_input('Indicador')
+        freq = ["Diário","Semanal","Mensal"] 
+        Freq = st.selectbox("Frequência",freq)
 
     with col2:
         mt = st.text_input('Meta')
