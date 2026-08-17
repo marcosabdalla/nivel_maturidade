@@ -27,6 +27,20 @@ def le_gov():
     ''', conexao)
     return dados
 
+def le_gov2():
+    dados = pd.read_sql_query('''
+    SELECT * FROM "GOVERNANCA"
+    ''', conexao)
+
+    pessoas = pd.read_sql_query('''
+    SELECT "id", "nome" FROM "PESSOAS"
+    ''', conexao)
+
+    dados = dados.merge(pessoas, left_on="responsavel", right_on="id", how="left")
+    dados = dados.drop(columns=["responsavel", "id"]).rename(columns={"nome": "responsavel"})
+
+    return dados
+
 def inserir_pessoa(nome, cargo):
     cur = conexao.cursor()
     cur.execute(
@@ -77,8 +91,9 @@ with gov:
     })
     GOV = GOV.drop(columns=["Criado em"])
     st.dataframe(GOV)
-    leg = pessoas["id"]
-    st.write(leg)
+
+    st.dataframe(le_gov2())
+
     
     
     FORM = st.form('Novo Reg. Gov', clear_on_submit = True)
