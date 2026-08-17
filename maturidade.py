@@ -55,7 +55,8 @@ tables_df = pd.read_sql(query, conexao)
 #st.dataframe(tables_df)
 
 #st.dataframe(le_pessoas())
-
+pessoas = le_pessoas()
+nomes = pessoas["nome"]
 gov, infra, curr, comm, pess = st.tabs(["Governança","Infraestrutura","Curriculo","Comunidade","Pessoas"])
 
 with gov:
@@ -66,9 +67,11 @@ with gov:
         indi = st.text_input('Indicador')
         freq = ["Diário","Semanal","Mensal"] 
         Freq = st.selectbox("Frequência",options=freq)
+        data_exec = st.date_input("Data Execução",value="today",format="DD/MM/YYYY")
 
     with col2:
         mt = st.text_input('Meta')
+        Pess = st.selectbox('Responsável', options = nomes)
     bt2 = FORM.form_submit_button('Inserir')
     st.dataframe(le_gov())
 
