@@ -65,7 +65,7 @@ with gov:
     with col1:
         indi = st.text_input('Indicador')
         freq = ["Diário","Semanal","Mensal"] 
-        Freq = st.selectbox("Frequência",freq)
+        Freq = st.selectbox("Frequência",options=freq)
 
     with col2:
         mt = st.text_input('Meta')
