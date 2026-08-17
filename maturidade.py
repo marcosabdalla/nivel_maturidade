@@ -78,7 +78,7 @@ with gov:
     GOV = GOV.drop(columns=["Criado em"])
     st.dataframe(GOV)
     leg = pessoas[["id","nome"]].copy
-    st.dataframe(leg)
+    st.write(leg)
     
     
     FORM = st.form('Novo Reg. Gov', clear_on_submit = True)
