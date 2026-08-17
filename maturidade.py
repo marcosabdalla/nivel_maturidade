@@ -17,7 +17,7 @@ conexao = psycopg2.connect(
 # -- Funcoes ----------------------------------------
 def le_pessoas():
     dados = pd.read_sql_query('''
-    SELECT * FROM PESSOAS
+    SELECT * FROM "PESSOAS"
     ''', conexao)
     return dados
 
