@@ -59,6 +59,15 @@ tables_df = pd.read_sql(query, conexao)
 gov, infra, curr, comm, pess = st.tabs(["Governança","Infraestrutura","Curriculo","Comunidade","Pessoas"])
 
 with gov:
+    FORM = st.form('Novo Reg. Gov', clear_on_submit = True)
+    FORM.subheader('Novo registro em Governança')
+    col1, col2 = FORM.columns(2)
+    with col1:
+        indi = FORM.text_input('Indicador')
+
+    with col2:
+        mt = FORM.text_input('Meta')
+    bt2 = FORM.form_submit_button('Inserir')
     st.dataframe(le_gov())
 
 with pess:
