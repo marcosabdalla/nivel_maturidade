@@ -26,7 +26,7 @@ def le_pessoas():
 # ── Interface Streamlit ──────────────────────────────
 st.set_page_config(page_title="Maturidade e Governança", page_icon="🏪", layout="wide")
 
-"""
+
 query = """
 SELECT table_name
 FROM information_schema.tables
@@ -34,9 +34,9 @@ WHERE table_schema = 'public'
 ORDER BY table_name;
 """
 tables_df = pd.read_sql(query, conexao)
-st.dataframe(tables_df)
+#st.dataframe(tables_df)
 
-st.dataframe(le_pessoas())"""
+#st.dataframe(le_pessoas())
 
 tab1, tab2, tab3, tab4, tab5 = st.tabs(["Governança","Infraestrutura","Curriculo","Comunidade","Pessoas"])
 
