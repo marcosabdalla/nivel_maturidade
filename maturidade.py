@@ -61,6 +61,17 @@ gov, infra, curr, comm, pess = st.tabs(["Governança","Infraestrutura","Curricul
 
 with gov:
     GOV = le_gov()
+    GOV = GOV.rename(columns={
+    "id": "ID",
+    "criado_em": "Criado em",
+    "indicador": "Indicador",
+    "meta":"Meta",
+    "frequencia":"Frequência",
+    "responsavel":"Responsável",
+    "data_execucao":"Data Execução",
+    "status":"Status",
+    "observacoes":"Observações"
+    })
     
     #GOV.columns["ID","Criado em","Indicador","Meta","Frequência","Responsável","data_execucao","Status","Observações"]
     #GOV = GOV.drop(["Criado em"])
