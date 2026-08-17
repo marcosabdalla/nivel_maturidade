@@ -103,6 +103,9 @@ with gov:
     with col2:
         mt = st.text_input('Meta')
         Pess = st.selectbox('Responsável', options = nomes)
+        idx = pessoas[pessoas["nome"] == Pess].index
+        idx_pess = pessoa.loc[idx,"id"]
+        st.write(idx_pess)
         stat = ["Não iniciado","Em andamento","Concluido"]
         Stat = st.selectbox('Status', options = stat)
     obs = FORM.text_area("Observações", value="")
