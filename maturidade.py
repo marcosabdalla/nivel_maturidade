@@ -60,6 +60,10 @@ nomes = pessoas["nome"]
 gov, infra, curr, comm, pess = st.tabs(["Governança","Infraestrutura","Curriculo","Comunidade","Pessoas"])
 
 with gov:
+    GOV = le_gov()
+    Gov.columns["ID","Criado em","Indicador","Meta","Frequência","Responsável","Status","Observações"]
+    Gov = Gov.drop(["Criado em"])
+    st.dataframe(Gov)
     FORM = st.form('Novo Reg. Gov', clear_on_submit = True)
     FORM.subheader('Novo registro em Governança')
     col1, col2 = FORM.columns(2)
@@ -76,7 +80,7 @@ with gov:
         Stat = st.selectbox('Status', options = stat)
     obs = FORM.text_area("Observações", value="")
     bt2 = FORM.form_submit_button('Inserir')
-    st.dataframe(le_gov())
+    
 
 with pess:
     st.dataframe(le_pessoas())
