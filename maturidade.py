@@ -38,7 +38,7 @@ def le_gov2():
         how="left",
         suffixes=("", "_pessoa")
     )
-    dados = dados.drop(columns=["responsavel", "id"]).rename(columns={"nome": "responsavel"})
+    dados = dados.drop(columns=["responsavel"]).rename(columns={"nome": "responsavel"})
     dados = dados.drop(columns=["id_pessoa"])
 
     return dados
