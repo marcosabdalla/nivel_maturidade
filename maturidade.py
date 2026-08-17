@@ -57,6 +57,9 @@ tables_df = pd.read_sql(query, conexao)
 #st.dataframe(le_pessoas())
 pessoas = le_pessoas()
 nomes = pessoas["nome"]
+
+
+
 gov, infra, curr, comm, pess = st.tabs(["Governança","Infraestrutura","Curriculo","Comunidade","Pessoas"])
 
 with gov:
@@ -73,6 +76,14 @@ with gov:
     "observacoes":"Observações"
     })
     GOV = GOV.drop(columns=["Criado em"])
+
+    df_final = (
+    GOV
+    .merge(pessoas[["id", "Nome"]], left_on="Responsável", right_on="id", how="left")
+    )
+    st.dataframe(df_final)
+
+    
     st.dataframe(GOV)
     FORM = st.form('Novo Reg. Gov', clear_on_submit = True)
     FORM.subheader('Novo registro em Governança')
