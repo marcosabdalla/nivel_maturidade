@@ -63,10 +63,10 @@ with gov:
     FORM.subheader('Novo registro em Governança')
     col1, col2 = FORM.columns(2)
     with col1:
-        indi = FORM.text_input('Indicador')
+        indi = st.text_input('Indicador')
 
     with col2:
-        mt = FORM.text_input('Meta')
+        mt = st.text_input('Meta')
     bt2 = FORM.form_submit_button('Inserir')
     st.dataframe(le_gov())
 
