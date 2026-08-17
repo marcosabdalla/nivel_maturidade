@@ -36,8 +36,6 @@ ORDER BY table_name;
 tables_df = pd.read_sql(query, conexao)
 st.dataframe(tables_df)
 
-st.write(IDs)
-st.write(Nomes)
-st.write(Cargos)
+st.dataframe(le_pessoas())
 
 
