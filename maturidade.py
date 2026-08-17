@@ -27,11 +27,14 @@ def le_pessoas():
 st.set_page_config(page_title="Maturidade e Governança", page_icon="🏪", layout="wide")
 
 
-funs = le_pessoas()
-
-IDs = list(funs['id'])
-Nomes = list(funs['nome'])
-Cargos = list(funs['cargo'])
+query = """
+SELECT table_name
+FROM information_schema.tables
+WHERE table_schema = 'public'
+ORDER BY table_name;
+"""
+tables_df = pd.read_sql(query, engine)
+st.dataframe(tables_df)
 
 st.write(IDs)
 st.write(Nomes)
