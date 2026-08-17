@@ -72,6 +72,9 @@ with gov:
     with col2:
         mt = st.text_input('Meta')
         Pess = st.selectbox('Responsável', options = nomes)
+        stat = ["Não iniciado","Em andamento","Concluido"]
+        Stat = st.selectbox('Status', options = stat)
+    obs = FORM.text_area("Observações", value="")
     bt2 = FORM.form_submit_button('Inserir')
     st.dataframe(le_gov())
 
