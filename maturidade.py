@@ -1,19 +1,18 @@
 import streamlit as st
-import requests
+from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 import pandas as pd
-from datetime import datetime
-import pytz
-import io
+import base64
+import psycopg2
 
-# ── Configurações via Secrets ────────────────────────
-SUPABASE_URL    = st.secrets["SUPABASE_URL"]
-SUPABASE_APIKEY = st.secrets["SUPABASE_APIKEY"]
-
-HEADERS = {
-    "apikey":        SUPABASE_APIKEY,
-    "Authorization": f"Bearer {SUPABASE_APIKEY}",
-    "Content-Type":  "application/json"
-}
+conexao = psycopg2.connect(
+    host=st.secrets["db"]["host"],
+    port=6543,  
+    database=st.secrets["db"]["name"],
+    user=st.secrets["db"]["user"],
+    password=st.secrets["db"]["password"],
+    sslmode="require"
+)
 
 
 # ── Interface Streamlit ──────────────────────────────
