@@ -77,7 +77,7 @@ with gov:
     })
     GOV = GOV.drop(columns=["Criado em"])
     st.dataframe(GOV)
-    leg = pessoas(["id","nome"])
+    leg = pessoas[["id","nome"]].copy
     st.dataframe(leg)
     
     
