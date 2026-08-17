@@ -14,6 +14,27 @@ conexao = psycopg2.connect(
     sslmode="require"
 )
 
+# -- Funcoes ----------------------------------------
+def le_pessoas():
+    dados = pd.read_sql_query('''
+    SELECT * FROM PESSOAS
+    ''', conexao)
+    return dados
+
+
 
 # ── Interface Streamlit ──────────────────────────────
 st.set_page_config(page_title="Maturidade e Governança", page_icon="🏪", layout="wide")
+
+
+funs = le_pessoas()
+
+IDs = list(funs['id'])
+Nomes = list(funs['nome'])
+Cargos = list(funs['cargo'])
+
+st.write(IDs)
+st.write(Nomes)
+st.write(Cargos)
+
+
