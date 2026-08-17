@@ -56,12 +56,12 @@ tables_df = pd.read_sql(query, conexao)
 
 #st.dataframe(le_pessoas())
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs(["Governança","Infraestrutura","Curriculo","Comunidade","Pessoas"])
+gov, infra, curr, comm, pess = st.tabs(["Governança","Infraestrutura","Curriculo","Comunidade","Pessoas"])
 
-with tab1:
+with gov:
     st.dataframe(le_gov())
 
-with tab5:
+with pess:
     st.dataframe(le_pessoas())
 
     FORM = st.form('Inserir novo funcionário', clear_on_submit=True)
