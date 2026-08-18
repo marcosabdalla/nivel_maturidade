@@ -65,6 +65,16 @@ def inserir_pessoa(nome, cargo):
     conexao.commit()
     cur.close()
 
+def inserir_gov(indicador,meta,frequencia,responsavel,data_execucao,status,observacoes):
+    cur = conexao.cursor()
+    cur.execute(
+        """
+        INSERT INTO "GOVERNANCA" (indicador,meta,frequencia,responsavel,data_execucao,status,observacoes)
+        VALUES (%s, %s,%s, %s,%s, %s,%s)
+        """,
+       (indicador,meta,frequencia,responsavel,data_execucao,status,observacoes) 
+    )
+
 
 
 # ── Interface Streamlit ──────────────────────────────
@@ -105,11 +115,13 @@ with gov:
         Pess = st.selectbox('Responsável', options = nomes)
         idx = pessoas[pessoas["nome"] == Pess].index
         idx_pess = pessoas.loc[idx,"id"]
-        st.write(idx_pess)
         stat = ["Não iniciado","Em andamento","Concluido"]
         Stat = st.selectbox('Status', options = stat)
     obs = FORM.text_area("Observações", value="")
     bt2 = FORM.form_submit_button('Inserir')
+    if bt2:
+        inserir_gov(indi,mt,Freq,idx_pess,data_exec,stat,obs)
+        
     
 
 with pess:
