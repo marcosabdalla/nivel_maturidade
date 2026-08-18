@@ -191,7 +191,7 @@ with gov:
     FORM_GOV = st.form('Atualiz Reg. Gov', clear_on_submit = True)
     FORM_GOV.subheader('Atualizar tabela Governança')
     ID_gov = FORM_GOV.text_input('Id a ser atualizado:')
-    coluna_gov = FORM_GOV.selectbox('Selecione a coluna a ser modificada:',("indicador", "meta", "frequencia", "responsavel",
+    coluna_gov = st.selectbox('Selecione a coluna a ser modificada:',("indicador", "meta", "frequencia", "responsavel",
         "data_execucao", "status", "observacoes"))
     if coluna_gov == 'status':
         novo_gov_status = FORM_GOV.selectbox('Novo Status:', options = ("Não iniciado","Em andamento","Concluido"),)
