@@ -50,8 +50,33 @@ def le_gov2():
     "status":"Status",
     "observacoes":"Observações"
     })
-
     return dados
+
+def le_infra():
+    dados = pd.read_sql_query('SELECT * FROM "INFRAESTRUTURA"', conexao)
+    pessoas = pd.read_sql_query('SELECT "id", "nome" FROM "PESSOAS"', conexao)
+
+    dados = dados.merge(
+        pessoas,
+        left_on="responsavel",
+        right_on="id",
+        how="left",
+        suffixes=("", "_pessoa")
+    )
+    dados = dados.drop(columns=["responsavel"]).rename(columns={"nome": "responsavel"})
+    dados = dados.drop(columns=["id_pessoa","criado_em"])
+    dados = dados.rename(columns={
+    "id": "ID",
+    "indicador": "Indicador",
+    "meta":"Meta",
+    "frequencia":"Frequência",
+    "responsavel":"Responsável",
+    "data_execucao":"Data Execução",
+    "status":"Status",
+    "observacoes":"Observações"
+    })
+    return dados
+
 
 def inserir_pessoa(nome, cargo):
     cur = conexao.cursor()
@@ -108,7 +133,7 @@ with gov:
     col1, col2 = FORM.columns(2)
     with col1:
         indi = st.text_input('Indicador')
-        freq = ["Diário","Semanal","Mensal"] 
+        freq = ["Diário","Semanal","Mensal","Semestral","Quinzenal","Anual"] 
         Freq = st.selectbox("Frequência",options=freq)
         data_exec = st.date_input("Data Execução",value="today",format="DD/MM/YYYY")
 
@@ -123,7 +148,8 @@ with gov:
     if bt2:
         inserir_gov(indi,mt,Freq,idx_pess,data_exec,Stat,obs)
         
-    
+with infra:
+    st.dataframe(le_infra())
 
 with pess:
     st.dataframe(le_pessoas())
