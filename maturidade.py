@@ -186,6 +186,7 @@ with gov:
     bt2 = FORM.form_submit_button('Inserir')
     if bt2:
         inserir_gov(indi,mt,Freq,idx_pess,data_exec,Stat,obs)
+        
 # ------------------------------ Edita GOV ----------------------------------------------------------------
     st.subheader('Atualizar tabela Governança')
     FORM_GOV = st.form('Atualiz Reg. Gov', clear_on_submit = True)
@@ -193,7 +194,7 @@ with gov:
     ID_gov = FORM_GOV.text_input('Id a ser atualizado:')
     coluna_gov = FORM_GOV.selectbox('Selecione a coluna a ser modificada:',("Indicador", "Meta", "Frequencia", "Responsavel",
         "Data Execucao", "Status", "Observacoes"))
-    if Col_gov == 'Status':
+    if coluna_gov == 'Status':
         novo_gov_status = FORM_GOV.selectbox('Novo Status:', options = ("Não iniciado","Em andamento","Concluido"),)
         valor_gov = novo_gov_status
     else:
