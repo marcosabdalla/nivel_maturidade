@@ -72,7 +72,7 @@ def inserir_gov(indicador,meta,frequencia,responsavel,data_execucao,status,obser
         INSERT INTO "GOVERNANCA" (indicador,meta,frequencia,responsavel,data_execucao,status,observacoes)
         VALUES (%s, %s,%s, %s,%s, %s,%s)
         """,
-       (indicador,meta,frequencia,responsavel,data_execucao,status,observacoes) 
+       (indicador,meta,frequencia,int(responsavel),data_execucao,status,observacoes) 
     )
     conexao.commit()
     cur.close()
