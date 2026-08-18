@@ -121,7 +121,7 @@ with gov:
     obs = FORM.text_area("Observações", value="")
     bt2 = FORM.form_submit_button('Inserir')
     if bt2:
-        inserir_gov(indi,mt,Freq,idx_pess,data_exec,stat,obs)
+        inserir_gov(indi,mt,Freq,idx_pess,data_exec,Stat,obs)
         
     
 
