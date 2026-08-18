@@ -181,7 +181,7 @@ with infra:
     obs = FORM.text_area("Observações", value="")
     bt3 = FORM.form_submit_button('Inserir')
     if bt3:
-        inserir_gov(indi,mt,Freq,idx_pess,data_exec,Stat,obs)
+        inserir_infra(indi,mt,Freq,idx_pess,data_exec,Stat,obs)
 
 with pess:
     st.dataframe(le_pessoas())
