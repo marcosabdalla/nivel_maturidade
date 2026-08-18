@@ -102,6 +102,18 @@ def inserir_gov(indicador,meta,frequencia,responsavel,data_execucao,status,obser
     conexao.commit()
     cur.close()
 
+def inserir_infra(indicador,meta,frequencia,responsavel,data_execucao,status,observacoes):
+    cur = conexao.cursor()
+    cur.execute(
+        """
+        INSERT INTO "INFRAESTRUTURA" (indicador,meta,frequencia,responsavel,data_execucao,status,observacoes)
+        VALUES (%s, %s,%s, %s,%s, %s,%s)
+        """,
+       (indicador,meta,frequencia,int(responsavel),data_execucao,status,observacoes) 
+    )
+    conexao.commit()
+    cur.close()
+
 
 
 # ── Interface Streamlit ──────────────────────────────
@@ -150,6 +162,26 @@ with gov:
         
 with infra:
     st.dataframe(le_infra())
+
+    FORM = st.form('Novo Reg. Infra', clear_on_submit = True)
+    FORM.subheader('Novo registro em Infraestrutura')
+    col1, col2 = FORM.columns(2)
+    with col1:
+        indi = st.text_input('Indicador')
+        freq = ["Diário","Semanal","Mensal","Semestral","Quinzenal","Anual"] 
+        Freq = st.selectbox("Frequência",options=freq)
+        data_exec = st.date_input("Data Execução",value="today",format="DD/MM/YYYY")
+
+    with col2:
+        mt = st.text_input('Meta')
+        Pess = st.selectbox('Responsável', options = nomes)
+        idx = pessoas[pessoas["nome"] == Pess].index
+        idx_pess = pessoas.loc[idx,"id"].values[0]
+        Stat = st.selectbox('Status', options = ("Não iniciado","Em andamento","Concluido"),)
+    obs = FORM.text_area("Observações", value="")
+    bt3 = FORM.form_submit_button('Inserir')
+    if bt3:
+        inserir_gov(indi,mt,Freq,idx_pess,data_exec,Stat,obs)
 
 with pess:
     st.dataframe(le_pessoas())
