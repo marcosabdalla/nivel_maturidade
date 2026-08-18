@@ -14,7 +14,7 @@ conexao = psycopg2.connect(
     sslmode="require"
 )
 
-# -- Funcoes ----------------------------------------
+# -------------------------------------------- Funcoes ----------------------------------------
 def le_pessoas():
     dados = pd.read_sql_query('''
     SELECT * FROM "PESSOAS"
@@ -116,10 +116,10 @@ def inserir_infra(indicador,meta,frequencia,responsavel,data_execucao,status,obs
 
 
 
-# ── Interface Streamlit ──────────────────────────────
+# ──---------------------------------------------- Interface Streamlit ──────────────────────────────
 col1, col2 = st.columns([1, 5])
 with col1:
-    st.image("logo.jpeg", width=80)
+    st.image("logo.jpeg", width=100)
 with col2:
     st.markdown("""
     <h1 style='color: #00008B; text-align: center; font-family: sans-serif;'>
