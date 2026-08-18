@@ -114,6 +114,13 @@ def inserir_infra(indicador,meta,frequencia,responsavel,data_execucao,status,obs
     conexao.commit()
     cur.close()
 
+def atualiza_gov(id_registro, coluna, valor):
+    cur = conexao.cursor()
+    query = f'UPDATE "GOVERNANCA" SET "{coluna}" = %s WHERE "id" = %s'
+    cur.execute(query, (valor, id_registro))
+    conexao.commit()
+    cur.close()
+
 
 
 # ──---------------------------------------------- Interface Streamlit ──────────────────────────────
@@ -179,6 +186,21 @@ with gov:
     bt2 = FORM.form_submit_button('Inserir')
     if bt2:
         inserir_gov(indi,mt,Freq,idx_pess,data_exec,Stat,obs)
+# ------------------------------ Edita GOV ----------------------------------------------------------------
+    st.subheader('Atualizar tabela Governança')
+    FORM_GOV = st.form('Atualiz Reg. Gov', clear_on_submit = True)
+    FORM_GOV.subheader('Atualizar tabela Governança')
+    ID_gov = FORM_GOV.text_input('Id a ser atualizado:')
+    coluna_gov = FORM_GOV.selectbox('Selecione a coluna a ser modificada:',("Indicador", "Meta", "Frequencia", "Responsavel",
+        "Data Execucao", "Status", "Observacoes"))
+    if Col_gov == 'Status':
+        novo_gov_status = FORM_GOV.selectbox('Novo Status:', options = ("Não iniciado","Em andamento","Concluido"),)
+        valor_gov = novo_gov_status
+    else:
+        valor_gov = FORM_GOV.text_input('Novo valor:')
+    bt3 = FORM_GOV.form_submit_button('Atualizar')
+    if bt3:        
+        atualiza_gov(ID_gov, coluna_gov, valor_gov)
         
 with infra:
     st.dataframe(le_infra())
