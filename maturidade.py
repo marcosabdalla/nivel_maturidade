@@ -153,7 +153,11 @@ with gov:
 #---------------------------------------- Metricas GOV ---------------------------------------------
     stat_gov = Plan_GOV["Status"]
     met_stat_gov = pd.Series(stat_gov).value_counts()
-    st.dataframe(met_stat_gov)
+    col1, col2 = st.columns(2)
+    with col1:
+        st.dataframe(met_stat_gov)
+    with col2:
+        st.bar_chart(met_stat_gov)
      
 #--------------------------------------- Nova Entrada ----------------------------------------------
     FORM = st.form('Novo Reg. Gov', clear_on_submit = True)
