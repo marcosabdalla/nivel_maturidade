@@ -117,6 +117,12 @@ def inserir_infra(indicador,meta,frequencia,responsavel,data_execucao,status,obs
 
 
 # ── Interface Streamlit ──────────────────────────────
+col1, col2 = st.columns([1, 5])
+with col1:
+    st.image("logo.jpeg", width=80)
+with col2:
+    st.title("Maturidade e Governança")
+    
 st.set_page_config(page_title="Maturidade e Governança", page_icon="🏪", layout="wide")
 
 
