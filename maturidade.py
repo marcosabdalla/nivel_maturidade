@@ -200,6 +200,7 @@ with gov:
     bt3 = st.button('Atualizar')
     if bt3:        
         atualiza_gov(ID_gov, coluna_gov, valor_gov)
+        st.rerun()
         
 with infra:
     st.dataframe(le_infra())
