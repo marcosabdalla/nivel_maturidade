@@ -74,6 +74,8 @@ def inserir_gov(indicador,meta,frequencia,responsavel,data_execucao,status,obser
         """,
        (indicador,meta,frequencia,responsavel,data_execucao,status,observacoes) 
     )
+    conexao.commit()
+    cur.close()
 
 
 
