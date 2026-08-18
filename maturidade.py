@@ -121,7 +121,11 @@ col1, col2 = st.columns([1, 5])
 with col1:
     st.image("logo.jpeg", width=80)
 with col2:
-    st.markdown("<h1 style='color: #1E90FF;'>EDUPOLIS-Circular</h1>", unsafe_allow_html=True)
+    st.markdown("""
+    <h1 style='color: #00008B; text-align: center; font-family: sans-serif;'>
+    EDUPOLIS-CIRCULAR
+    </h1>
+    """, unsafe_allow_html=True)
     
 st.set_page_config(page_title="Maturidade e Governança", page_icon="🏪", layout="wide")
 
