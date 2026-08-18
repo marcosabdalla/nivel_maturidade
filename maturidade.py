@@ -148,8 +148,14 @@ nomes = pessoas["nome"]
 gov, infra, curr, comm, pess = st.tabs(["Governança","Infraestrutura","Curriculo","Comunidade","Pessoas"])
 
 with gov:
-    st.dataframe(le_gov2())
-    
+    Plan_GOV = le_gov2()
+    st.dataframe(Plan_GOV)
+#---------------------------------------- Metricas GOV ---------------------------------------------
+    stat_gov = Plan_GOV["Status"]
+    met_stat_gov = pd.Series(stat_gov).value_counts()
+    st.dataframe(met_stat_gov)
+     
+#--------------------------------------- Nova Entrada ----------------------------------------------
     FORM = st.form('Novo Reg. Gov', clear_on_submit = True)
     FORM.subheader('Novo registro em Governança')
     col1, col2 = FORM.columns(2)
