@@ -157,7 +157,7 @@ with gov:
     with col1:
         st.dataframe(met_stat_gov)
     with col2:
-        st.bar_chart(met_stat_gov,color=["#00008B", "#008000", "#B22222"])
+        st.bar_chart(met_stat_gov,color=["#00008B"])
      
 #--------------------------------------- Nova Entrada ----------------------------------------------
     FORM = st.form('Novo Reg. Gov', clear_on_submit = True)
