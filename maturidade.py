@@ -188,17 +188,16 @@ with gov:
         inserir_gov(indi,mt,Freq,idx_pess,data_exec,Stat,obs)
         
 # ------------------------------ Edita GOV ----------------------------------------------------------------
-    FORM_GOV = st.form('Atualiz Reg. Gov', clear_on_submit = True)
-    FORM_GOV.subheader('Atualizar tabela Governança')
-    ID_gov = FORM_GOV.text_input('Id a ser atualizado:')
+    st.subheader('Atualizar tabela Governança')
+    ID_gov = st.text_input('Id a ser atualizado:')
     coluna_gov = st.selectbox('Selecione a coluna a ser modificada:',("indicador", "meta", "frequencia", "responsavel",
         "data_execucao", "status", "observacoes"))
     if coluna_gov == 'status':
-        novo_gov_status = FORM_GOV.selectbox('Novo Status:', options = ("Não iniciado","Em andamento","Concluido"),)
+        novo_gov_status = st.selectbox('Novo Status:', options = ("Não iniciado","Em andamento","Concluido"),)
         valor_gov = novo_gov_status
     else:
-        valor_gov = FORM_GOV.text_input('Novo valor:')
-    bt3 = FORM_GOV.form_submit_button('Atualizar')
+        valor_gov = st.text_input('Novo valor:')
+    bt3 = st.button('Atualizar')
     if bt3:        
         atualiza_gov(ID_gov, coluna_gov, valor_gov)
         
