@@ -212,6 +212,8 @@ with gov:
     if coluna_gov == 'status':
         novo_gov_status = st.selectbox('Novo Status:', options = ("Não iniciado","Em andamento","Concluido"),)
         valor_gov = novo_gov_status
+    elif coluna_gov == 'data_execucao':
+        valor_gov = st.date_input("Data Execução",value="today",format="DD/MM/YYYY")
     else:
         valor_gov = st.text_input('Novo valor:')
     bt3 = st.button('Atualizar')
