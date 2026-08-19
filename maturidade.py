@@ -155,8 +155,24 @@ nomes = pessoas["nome"]
 gov, infra, curr, comm, pess = st.tabs(["Governança","Infraestrutura","Curriculo","Comunidade","Pessoas"])
 
 with gov:
+#---------------------------------------- Dados Brutos -------------------------------------------
     Plan_GOV = le_gov2()
     st.dataframe(Plan_GOV)
+#----------------------------------------- Filtro por data ---------------------------------------
+st.subheader('Filtro por data')
+Plan_GOV["Data Execução"] = pd.to_datetime(Plan_GOV["Data Execução"])
+
+col1, col2 = st.columns(2)
+with col1:
+    data_inicio = st.date_input("Data inicial", value=Plan_GOV["Data Execução"].min())
+with col2:
+    data_fim = st.date_input("Data final", value=Plan_GOV["Data Execução"].max())
+
+mask = (Plan_GOV["Data Execução"] >= pd.to_datetime(data_inicio)) & (Plan_GOV["Data Execução"] <= pd.to_datetime(data_fim))
+df_filtrado = Plan_GOV.loc[mask]
+
+st.dataframe(df_filtrado)
+
 #---------------------------------------- Metricas GOV ---------------------------------------------
     stat_gov = Plan_GOV["Status"]
     met_stat_gov = pd.Series(stat_gov).value_counts()
