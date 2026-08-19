@@ -174,7 +174,8 @@ with gov:
     st.dataframe(df_filtrado)
 
 #---------------------------------------- Metricas GOV ---------------------------------------------
-    stat_gov = Plan_GOV["Status"]
+    #stat_gov = Plan_GOV["Status"]
+    stat_gov = df_filtrado["Status"]
     met_stat_gov = pd.Series(stat_gov).value_counts()
     col1, col2 = st.columns(2)
     with col1:
