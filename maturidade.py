@@ -158,7 +158,7 @@ nomes = pessoas["nome"]
 
 
 
-gov, infra, curr, comm, pess, fer = st.tabs(["Governança","Infraestrutura","Curriculo","Comunidade","Pessoas","Ferramentas"])
+gov, infra, curr, comm, pess, fer = st.tabs(["Governança","Infraestrutura","Curriculo","Comunidade","Pessoas","Ferramentas e Práticas"])
 
 with gov:
 #---------------------------------------- Dados Brutos -------------------------------------------
@@ -264,8 +264,13 @@ with pess:
 with fer:
     st.header("Ferramentas e Práticas")
     econo, logi = st.tabs(["Economia Circular","Logistica Reversa"])
+    with econo:
+        st.subheader("Ferramentas")
+        st.subheader("Práticas")
     with logi:
+        st.subheader("Ferramentas")
         st.dataframe(le_ferramentas())
+        st.subheader("Práticas")
     
 
 
