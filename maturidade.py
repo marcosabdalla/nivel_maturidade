@@ -152,7 +152,7 @@ nomes = pessoas["nome"]
 
 
 
-gov, infra, curr, comm, pess = st.tabs(["Governança","Infraestrutura","Curriculo","Comunidade","Pessoas"])
+gov, infra, curr, comm, pess, ind = st.tabs(["Governança","Infraestrutura","Curriculo","Comunidade","Pessoas","Índices"])
 
 with gov:
 #---------------------------------------- Dados Brutos -------------------------------------------
