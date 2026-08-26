@@ -262,7 +262,10 @@ with pess:
         inserir_pessoa(nome, cargo)
 
 with fer:
-    st.dataframe(le_ferramentas())
+    st.header("Ferramentas e Práticas")
+    econo, logi = st.tabs("Economia Circular","Logistica Reversa")
+    with logi:
+        st.dataframe(le_ferramentas())
     
 
 
