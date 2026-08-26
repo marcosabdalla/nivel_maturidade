@@ -263,7 +263,7 @@ with pess:
 
 with fer:
     st.header("Ferramentas e Práticas")
-    econo, logi = st.tabs("Economia Circular","Logistica Reversa")
+    econo, logi = st.tabs(["Economia Circular","Logistica Reversa"])
     with logi:
         st.dataframe(le_ferramentas())
     
