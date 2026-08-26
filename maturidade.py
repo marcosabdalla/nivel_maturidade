@@ -189,7 +189,7 @@ with gov:
     col1, col2 = FORM.columns(2)
     with col1:
         indi = st.text_input('Indicador')
-        freq = ["Diário","Semanal","Mensal","Semestral","Quinzenal","Anual"] 
+        freq = ["Única","Diário","Semanal","Mensal","Semestral","Quinzenal","Anual"] 
         Freq = st.selectbox("Frequência",options=freq)
         data_exec = st.date_input("Data Execução",value="today",format="DD/MM/YYYY")
 
@@ -229,7 +229,7 @@ with infra:
     col1, col2 = FORM.columns(2)
     with col1:
         indi = st.text_input('Indicador')
-        freq = ["Diário","Semanal","Mensal","Semestral","Quinzenal","Anual"] 
+        freq = ["Única","Diário","Semanal","Mensal","Semestral","Quinzenal","Anual"] 
         Freq = st.selectbox("Frequência",options=freq)
         data_exec = st.date_input("Data Execução",value="today",format="DD/MM/YYYY")
 
