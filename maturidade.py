@@ -21,9 +21,15 @@ def le_pessoas():
     ''', conexao)
     return dados
 
-def le_ferramentas():
+def le_ferramentas_log():
     dados = pd.read_sql_query('''
     SELECT * FROM "FERRAMENTA_LOG"
+    ''', conexao)
+    return dados
+
+def le_ferramentas_eco():
+    dados = pd.read_sql_query('''
+    SELECT * FROM "FERRAMENTA_ECO"
     ''', conexao)
     return dados
 
@@ -266,10 +272,11 @@ with fer:
     econo, logi = st.tabs(["Economia Circular","Logistica Reversa"])
     with econo:
         st.subheader("Ferramentas")
+        st.dataframe(le_ferramentas_eco())
         st.subheader("Práticas")
     with logi:
         st.subheader("Ferramentas")
-        st.dataframe(le_ferramentas())
+        st.dataframe(le_ferramentas_log())
         st.subheader("Práticas")
     
 
