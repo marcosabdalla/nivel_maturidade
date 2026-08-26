@@ -21,6 +21,12 @@ def le_pessoas():
     ''', conexao)
     return dados
 
+def le_ferramentas():
+    dados = pd.read_sql_query('''
+    SELECT * FROM "FERRAMENTA_LOG"
+    ''', conexao)
+    return dados
+
 def le_gov():
     dados = pd.read_sql_query('''
     SELECT * FROM "GOVERNANCA"
@@ -152,7 +158,7 @@ nomes = pessoas["nome"]
 
 
 
-gov, infra, curr, comm, pess, ind = st.tabs(["Governança","Infraestrutura","Curriculo","Comunidade","Pessoas","Índices"])
+gov, infra, curr, comm, pess, fer = st.tabs(["Governança","Infraestrutura","Curriculo","Comunidade","Pessoas","Ferramentas"])
 
 with gov:
 #---------------------------------------- Dados Brutos -------------------------------------------
@@ -254,6 +260,9 @@ with pess:
     bt1 = FORM.form_submit_button('Inserir')
     if bt1:
         inserir_pessoa(nome, cargo)
+
+with fer:
+    st.dataframe(le_ferramentas())
     
 
 
