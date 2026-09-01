@@ -200,7 +200,11 @@ with gov:
 #--------------------------------------- Nova Entrada ----------------------------------------------
     df_A = le_ferramentas_eco()
     df_B = le_ferramentas_log()
-    new_df = pd.concat([df_A["Ferramentas"], df_B["Ferramenta"]], axis=1)
+
+    new_df = pd.DataFrame({
+    "merged": pd.concat([df_A["Ferramentas"], df_B["Ferramenta"]], ignore_index=True)
+    })
+    
     st.dataframe(new_df)
     FORM = st.form('Novo Reg. Gov', clear_on_submit = True)
     FORM.subheader('Novo registro em Governança')
