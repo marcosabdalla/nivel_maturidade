@@ -164,8 +164,10 @@ nomes = pessoas["nome"]
 
 
 
-gov, infra, curr, comm, pess, fer = st.tabs(["Governança","Infraestrutura","Curriculo","Comunidade","Pessoas","Ferramentas e Práticas"])
-
+intro,gov, infra, curr, comm, pess, fer = st.tabs(["Apresentação","Governança","Infraestrutura","Curriculo","Comunidade","Pessoas","Ferramentas e Práticas"])
+with intro:
+    with open("apresentacao.md", "r", encoding="utf-8") as f:
+        st.markdown(f.read())
 with gov:
 #---------------------------------------- Dados Brutos -------------------------------------------
     Plan_GOV = le_gov2()
