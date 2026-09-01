@@ -244,7 +244,8 @@ with gov:
         st.rerun()
         
 with infra:
-    st.dataframe(le_infra())
+    st.header("Em construção 🚧")
+    '''st.dataframe(le_infra())
 
     FORM = st.form('Novo Reg. Infra', clear_on_submit = True)
     FORM.subheader('Novo registro em Infraestrutura')
@@ -264,7 +265,7 @@ with infra:
     obs = FORM.text_area("Observações", value="")
     bt3 = FORM.form_submit_button('Inserir')
     if bt3:
-        inserir_infra(indi,mt,Freq,idx_pess,data_exec,Stat,obs)
+        inserir_infra(indi,mt,Freq,idx_pess,data_exec,Stat,obs)'''
 
 with pess:
     st.dataframe(le_pessoas())
