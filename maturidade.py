@@ -274,7 +274,10 @@ with fer:
     econo, logi = st.tabs(["Economia Circular","Logistica Reversa"])
     with econo:
         st.subheader("Ferramentas")
-        st.dataframe(le_ferramentas_eco())
+        F_eco = le_ferramentas_eco()
+        ferramentas_eco = st.selectbox("Selecione uma ferramenta de economia circular", F_eco["Ferramentas"])
+        obs_ferr_eco = F_eco.loc[F_eco["Ferramentas"] == ferramentas_eco, "Observações"].values[0]
+        st.write(f"Observações: {obs_ferr_eco}")
         st.subheader("Práticas")
     with logi:
         st.subheader("Ferramentas")
