@@ -201,16 +201,16 @@ with gov:
     df_A = le_ferramentas_eco()
     df_B = le_ferramentas_log()
 
-    new_df = pd.DataFrame({
+    indicadores = pd.DataFrame({
     "merged": pd.concat([df_A["Ferramentas"], df_B["Ferramenta"]], ignore_index=True)
     })
     
-    st.dataframe(new_df)
     FORM = st.form('Novo Reg. Gov', clear_on_submit = True)
     FORM.subheader('Novo registro em Governança')
     col1, col2 = FORM.columns(2)
     with col1:
-        indi = st.text_input('Indicador')
+        #indi = st.text_input('Indicador')
+        indi = st.selectbox("Indicador", options = indicadores)
         freq = ["Única","Diário","Semanal","Mensal","Semestral","Quinzenal","Anual"] 
         Freq = st.selectbox("Frequência",options=freq)
         data_exec = st.date_input("Data Execução",value="today",format="DD/MM/YYYY")
