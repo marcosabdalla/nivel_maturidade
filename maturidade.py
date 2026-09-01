@@ -245,6 +245,7 @@ with gov:
         
 with infra:
     st.header("Em construção 🚧")
+    
     '''st.dataframe(le_infra())
 
     FORM = st.form('Novo Reg. Infra', clear_on_submit = True)
@@ -266,6 +267,12 @@ with infra:
     bt3 = FORM.form_submit_button('Inserir')
     if bt3:
         inserir_infra(indi,mt,Freq,idx_pess,data_exec,Stat,obs)'''
+    
+with curr:
+    st.header("Em construção 🚧")
+
+with comm:
+    st.header("Em construção 🚧")
 
 with pess:
     st.dataframe(le_pessoas())
