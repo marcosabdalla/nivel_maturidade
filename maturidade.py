@@ -281,7 +281,10 @@ with fer:
         st.subheader("Práticas")
     with logi:
         st.subheader("Ferramentas")
-        st.dataframe(le_ferramentas_log())
+        F_log = le_ferramentas_log()
+        ferramentas_log = st.selectbox("Selecione uma ferramenta de logistica reversa", F_log["Ferramenta"])
+        obs_ferr_log = F_log.loc[F_log["Ferramenta"] == ferramentas_log, "Observações"].values[0]
+        st.write(f"Observações: {obs_ferr_log}")
         st.subheader("Práticas")
     
 
