@@ -164,7 +164,7 @@ nomes = pessoas["nome"]
 
 
 
-intro,gov, infra, curr, comm, pess, fer = st.tabs(["Apresentação","Governança","Infraestrutura","Curriculo","Comunidade","Pessoas","Ferramentas e Práticas"])
+intro,gov, infra, curr, comm, pess, fer, con = st.tabs(["Apresentação","Governança","Infraestrutura","Curriculo","Comunidade","Pessoas","Ferramentas e Práticas","Conceito"])
 with intro:
     with open("apresentacao.md", "r", encoding="utf-8") as f:
         st.markdown(f.read())
@@ -302,6 +302,9 @@ with fer:
         obs_ferr_log = F_log.loc[F_log["Ferramenta"] == ferramentas_log, "Observações"].values[0]
         st.write(f"Observações: {obs_ferr_log}")
         st.subheader("Práticas")
+
+with con:
+    st.header("Em construção 🚧")
     
 
 
