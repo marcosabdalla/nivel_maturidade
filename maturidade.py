@@ -164,7 +164,7 @@ nomes = pessoas["nome"]
 
 
 
-intro,gov, infra, curr, comm, pess, fer, con = st.tabs(["Apresentação","Governança","Infraestrutura","Curriculo","Comunidade","Pessoas","Ferramentas e Práticas","Conceito"])
+intro,gov, infra, curr, comm, pess, fer, con, gui = st.tabs(["Apresentação","Governança","Infraestrutura","Curriculo","Comunidade","Pessoas","Ferramentas e Práticas","Conceito","Guia de Uso"])
 with intro:
     with open("apresentacao.md", "r", encoding="utf-8") as f:
         st.markdown(f.read())
@@ -309,7 +309,10 @@ with con:
         st.write("Defini-se Economia Circular como uma abordagem que exige a gestão eficaz de atividades para recuperar valor ou descartar produtos de forma adequada, envolvendo o estabelecimento de sistemas de logística reversa que permitem o fechamento do ciclo. Mallick et al. (2024)")
     with log:
         st.write("Define-se Logística Reversa como o processo integrado de gestão dos fluxos de retorno de produtos e resíduos, visando à recuperação de valor e ao fechamento de ciclos materiais. Ela é entendida simultaneamente como: uma atividade operacional de planejamento e controle de fluxos reversos (MALLICK et al., 2024; CHEN, 2024); e um componente estratégico dos modelos de economia circular (FERASSO, 2020; RAJI, 2024.")
-    st.header("Em construção 🚧")
+   
+
+with gui:
+     st.header("Em construção 🚧")
     
 
 
