@@ -138,7 +138,7 @@ def atualiza_gov(id_registro, coluna, valor):
 # ──---------------------------------------------- Interface Streamlit ──────────────────────────────
 col1, col2 = st.columns([1, 5])
 with col1:
-    st.image("Novo_Logo.png", width=100)
+    st.image("Novo_Logo.png", width=200)
 with col2:
     st.markdown("""
     <h1 style='color: #00008B; text-align: center; font-family: sans-serif;'>
