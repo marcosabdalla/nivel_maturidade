@@ -54,7 +54,7 @@ def le_gov2():
     dados = dados.drop(columns=["id_pessoa","criado_em"])
     dados = dados.rename(columns={
     "id": "ID",
-    "indicador": "Indicador",
+    "indicador": "Atividade",
     "meta":"Meta",
     "frequencia":"Frequência",
     "responsavel":"Responsável",
