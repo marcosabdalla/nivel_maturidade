@@ -79,7 +79,7 @@ def le_infra():
     dados = dados.drop(columns=["id_pessoa","criado_em"])
     dados = dados.rename(columns={
     "id": "ID",
-    "indicador": "Indicador",
+    "indicador": "Atividade",
     "meta":"Meta",
     "frequencia":"Frequência",
     "responsavel":"Responsável",
