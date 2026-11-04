@@ -312,7 +312,18 @@ with con:
    
 
 with gui:
-     st.header("Em construção 🚧")
+    # Abrir o arquivo PDF
+    with open("manual.pdf", "rb") as arquivo:
+        pdf = arquivo.read()
+
+    # Botão de download
+    st.download_button(
+        label="📥 Baixar manual em PDF",
+        data=pdf,
+        file_name="GuiaUso.pdf",
+        mime="application/pdf"
+    )
+    st.header("Em construção 🚧")
     
 
 
