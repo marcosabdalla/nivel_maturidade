@@ -19,4 +19,6 @@ O Guia está estruturado em 4 Pilares que respondem a elementos estratégicos de
 6. **Conceitos** — definições sobre EC e LR;
 
 7. **Guia de uso** — manual com instruções de uso da ferramenta.
+
+
 Este guia foi desenvolvido como parte da dissertação de Mestrado do Programa de Pós-Graduação em Engenharia de Produção da UFSCar, da mestranda Patrícia Rosa da Silveira Araújo.
