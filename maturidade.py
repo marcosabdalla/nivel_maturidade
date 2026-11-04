@@ -210,7 +210,7 @@ with gov:
     col1, col2 = FORM.columns(2)
     with col1:
         #indi = st.text_input('Indicador')
-        indi = st.selectbox("Indicador", options = indicadores)
+        indi = st.selectbox("Atividade", options = indicadores)
         freq = ["Única","Diário","Semanal","Mensal","Semestral","Quinzenal","Anual"] 
         Freq = st.selectbox("Frequência",options=freq)
         data_exec = st.date_input("Data Execução",value="today",format="DD/MM/YYYY")
@@ -229,7 +229,7 @@ with gov:
 # ------------------------------ Edita GOV ----------------------------------------------------------------
     st.subheader('Atualizar tabela Governança')
     ID_gov = st.text_input('Id a ser atualizado:')
-    coluna_gov = st.selectbox('Selecione a coluna a ser modificada:',("indicador", "meta", "frequencia", "responsavel",
+    coluna_gov = st.selectbox('Selecione a coluna a ser modificada:',("atividade", "meta", "frequencia", "responsavel",
         "data_execucao", "status", "observacoes"))
     if coluna_gov == 'status':
         novo_gov_status = st.selectbox('Novo Status:', options = ("Não iniciado","Em andamento","Concluido"),)
