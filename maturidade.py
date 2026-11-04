@@ -304,6 +304,7 @@ with fer:
         st.subheader("Práticas")
 
 with con:
+    eco, log = st.tabs("Economia circular","Logística Reversa") 
     st.header("Em construção 🚧")
     
 
