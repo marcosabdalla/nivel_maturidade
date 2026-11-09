@@ -198,11 +198,13 @@ pessoas = le_pessoas()
 nomes = pessoas["nome"]
 
 
-
+#------------------------------------------------------------------------- ABAS -------------------------------------------------------------------------------------------------------------------
 intro,gov, infra, curr, comm, pess, fer, con, gui = st.tabs(["Apresentação","Governança","Infraestrutura","Curriculo","Comunidade","Pessoas","Ferramentas e Práticas","Conceito","Guia de Uso"])
+#------------------------------------------------------------------------- INTRO -------------------------------------------------------------------------------------------------------------------
 with intro:
     with open("apresentacao.md", "r", encoding="utf-8") as f:
         st.markdown(f.read())
+#------------------------------------------------------------------------- GOV -------------------------------------------------------------------------------------------------------------------
 with gov:
 #---------------------------------------- Dados Brutos -------------------------------------------
     Plan_GOV = le_gov2()
@@ -277,7 +279,7 @@ with gov:
     if bt3:        
         atualiza_gov(ID_gov, coluna_gov, valor_gov)
         st.rerun()
-        
+#------------------------------------------------------------------------- INFRA -------------------------------------------------------------------------------------------------------------------
 with infra:    
     st.dataframe(le_infra())
 
@@ -300,7 +302,8 @@ with infra:
     bt3 = FORM.form_submit_button('Inserir')
     if bt3:
         inserir_infra(indi,mt,Freq,idx_pess,data_exec,Stat,obs)
-    
+
+#------------------------------------------------------------------------- CURR -------------------------------------------------------------------------------------------------------------------
 with curr:
     st.header("Em construção 🚧")
     st.dataframe(le_cur())
@@ -325,6 +328,7 @@ with curr:
     if bt3:
         inserir_cur(indi,mt,Freq,idx_pess,data_exec,Stat,obs)
 
+#------------------------------------------------------------------------- COMUNI -------------------------------------------------------------------------------------------------------------------
 with comm:
     st.header("Em construção 🚧")
     st.dataframe(le_com())
@@ -349,6 +353,7 @@ with comm:
     if bt3:
         inserir_om(indi,mt,Freq,idx_pess,data_exec,Stat,obs)
 
+#------------------------------------------------------------------------- PESS -------------------------------------------------------------------------------------------------------------------
 with pess:
     st.dataframe(le_pessoas())
 
@@ -360,6 +365,7 @@ with pess:
     if bt1:
         inserir_pessoa(nome, cargo)
 
+#------------------------------------------------------------------------- FERR -------------------------------------------------------------------------------------------------------------------
 with fer:
     st.header("Ferramentas e Práticas")
     econo, logi = st.tabs(["Economia Circular","Logistica Reversa"])
@@ -378,6 +384,7 @@ with fer:
         st.write(f"Observações: {obs_ferr_log}")
         st.subheader("Práticas")
 
+#------------------------------------------------------------------------- CON -------------------------------------------------------------------------------------------------------------------
 with con:
     eco, log = st.tabs(["Economia circular","Logística Reversa"]) 
     with eco:
@@ -386,6 +393,7 @@ with con:
         st.write("Define-se Logística Reversa como o processo integrado de gestão dos fluxos de retorno de produtos e resíduos, visando à recuperação de valor e ao fechamento de ciclos materiais. Ela é entendida simultaneamente como: uma atividade operacional de planejamento e controle de fluxos reversos (MALLICK et al., 2024; CHEN, 2024); e um componente estratégico dos modelos de economia circular (FERASSO, 2020; RAJI, 2024.")
    
 
+#------------------------------------------------------------------------- GUI -------------------------------------------------------------------------------------------------------------------
 with gui:
     # Abrir o arquivo PDF
     with open("manual.pdf", "rb") as arquivo:
