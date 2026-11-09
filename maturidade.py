@@ -21,6 +21,18 @@ def le_pessoas():
     ''', conexao)
     return dados
 
+def le_praticas_log():
+    dados = pd.read_sql_query('''
+    SELECT * FROM "PRATICA_LOG"
+    ''', conexao)
+    return dados
+
+def le_praticas_eco():
+    dados = pd.read_sql_query('''
+    SELECT * FROM "PRATICA_ECO"
+    ''', conexao)
+    return dados
+
 def le_ferramentas_log():
     dados = pd.read_sql_query('''
     SELECT * FROM "FERRAMENTA_LOG"
@@ -375,14 +387,26 @@ with fer:
         ferramentas_eco = st.selectbox("Selecione uma ferramenta de economia circular", F_eco["Ferramentas"])
         obs_ferr_eco = F_eco.loc[F_eco["Ferramentas"] == ferramentas_eco, "Observações"].values[0]
         st.write(f"Observações: {obs_ferr_eco}")
+        
         st.subheader("Práticas")
+        P_eco = le_praticas_eco()
+        praticas_eco = st.selectbox("Selecione uma prática de economia circular", P_eco["Prática"])
+        obs_pra_eco = P_eco.loc[P_eco["Prática"] == praticas_eco, "Descrição"].values[0]
+        st.write(f"Descrição: {obs_pra_eco}")
+
+    
     with logi:
         st.subheader("Ferramentas")
         F_log = le_ferramentas_log()
         ferramentas_log = st.selectbox("Selecione uma ferramenta de logistica reversa", F_log["Ferramenta"])
         obs_ferr_log = F_log.loc[F_log["Ferramenta"] == ferramentas_log, "Observações"].values[0]
         st.write(f"Observações: {obs_ferr_log}")
+        
         st.subheader("Práticas")
+        P_log = le_praticas_log()
+        praticas_log = st.selectbox("Selecione uma prática de logística", P_log["Prática"])
+        obs_pra_log = P_log.loc[P_log["Prática"] == praticas_log, "Descrição"].values[0]
+        st.write(f"Descrição: {obs_pra_log}")
 
 #------------------------------------------------------------------------- CON -------------------------------------------------------------------------------------------------------------------
 with con:
