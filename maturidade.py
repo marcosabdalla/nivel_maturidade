@@ -95,6 +95,11 @@ def le_cur():
     ''', conexao)
     return dados
 
+def le_com():
+    dados = pd.read_sql_query('''
+    SELECT * FROM "COMUNIDADE"
+    ''', conexao)
+    return dados
 
 def inserir_pessoa(nome, cargo):
     cur = conexao.cursor()
@@ -137,6 +142,18 @@ def inserir_cur(atividade,meta,frequencia,responsavel,data_execucao,status,obser
     cur.execute(
         """
         INSERT INTO "CURRICULO" (atividade,meta,frequencia,responsavel,data_execucao,status,observacoes)
+        VALUES (%s, %s,%s, %s,%s, %s,%s)
+        """,
+       (atividade,meta,frequencia,int(responsavel),data_execucao,status,observacoes) 
+    )
+    conexao.commit()
+    cur.close()
+
+def inserir_com(atividade,meta,frequencia,responsavel,data_execucao,status,observacoes):
+    cur = conexao.cursor()
+    cur.execute(
+        """
+        INSERT INTO "COMUNIDADE" (atividade,meta,frequencia,responsavel,data_execucao,status,observacoes)
         VALUES (%s, %s,%s, %s,%s, %s,%s)
         """,
        (atividade,meta,frequencia,int(responsavel),data_execucao,status,observacoes) 
@@ -310,6 +327,27 @@ with curr:
 
 with comm:
     st.header("Em construção 🚧")
+     st.dataframe(le_com())
+
+    FORM = st.form('Novo Reg. Curr', clear_on_submit = True)
+    FORM.subheader('Novo registro em Comunidade')
+    col1, col2 = FORM.columns(2)
+    with col1:
+        indi = st.text_input('Atividade')
+        freq = ["Única","Diário","Semanal","Mensal","Semestral","Quinzenal","Anual"] 
+        Freq = st.selectbox("Frequência",options=freq)
+        data_exec = st.date_input("Data Execução",value="today",format="DD/MM/YYYY")
+
+    with col2:
+        mt = st.text_input('Meta')
+        Pess = st.selectbox('Responsável', options = nomes)
+        idx = pessoas[pessoas["nome"] == Pess].index
+        idx_pess = pessoas.loc[idx,"id"].values[0]
+        Stat = st.selectbox('Status', options = ("Não iniciado","Em andamento","Concluido"),)
+    obs = FORM.text_area("Observações", value="")
+    bt3 = FORM.form_submit_button('Inserir')
+    if bt3:
+        inserir_om(indi,mt,Freq,idx_pess,data_exec,Stat,obs)
 
 with pess:
     st.dataframe(le_pessoas())
