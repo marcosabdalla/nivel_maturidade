@@ -246,7 +246,7 @@ with gov:
 with infra:
     st.header("Em construção 🚧")
     
-    t.dataframe(le_infra())
+    st.dataframe(le_infra())
 
     FORM = st.form('Novo Reg. Infra', clear_on_submit = True)
     FORM.subheader('Novo registro em Infraestrutura')
