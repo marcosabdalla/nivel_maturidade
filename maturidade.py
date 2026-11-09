@@ -142,7 +142,7 @@ with col1:
 with col2:
     st.markdown("""
     <h1 style='color: #00008B; text-align: center; font-family: sans-serif;'>
-    EDUPOLIS-CIRCULAR
+    EduCircular
     </h1>
     """, unsafe_allow_html=True)
     
