@@ -114,14 +114,14 @@ def inserir_gov(indicador,meta,frequencia,responsavel,data_execucao,status,obser
     conexao.commit()
     cur.close()
 
-def inserir_infra(indicador,meta,frequencia,responsavel,data_execucao,status,observacoes):
+def inserir_infra(atividade,meta,frequencia,responsavel,data_execucao,status,observacoes):
     cur = conexao.cursor()
     cur.execute(
         """
-        INSERT INTO "INFRAESTRUTURA" (indicador,meta,frequencia,responsavel,data_execucao,status,observacoes)
+        INSERT INTO "INFRAESTRUTURA" (atividade,meta,frequencia,responsavel,data_execucao,status,observacoes)
         VALUES (%s, %s,%s, %s,%s, %s,%s)
         """,
-       (indicador,meta,frequencia,int(responsavel),data_execucao,status,observacoes) 
+       (atividade,meta,frequencia,int(responsavel),data_execucao,status,observacoes) 
     )
     conexao.commit()
     cur.close()
@@ -243,16 +243,14 @@ with gov:
         atualiza_gov(ID_gov, coluna_gov, valor_gov)
         st.rerun()
         
-with infra:
-    st.header("Em construção 🚧")
-    
+with infra:    
     st.dataframe(le_infra())
 
     FORM = st.form('Novo Reg. Infra', clear_on_submit = True)
     FORM.subheader('Novo registro em Infraestrutura')
     col1, col2 = FORM.columns(2)
     with col1:
-        indi = st.text_input('Indicador')
+        indi = st.text_input('Atividade')
         freq = ["Única","Diário","Semanal","Mensal","Semestral","Quinzenal","Anual"] 
         Freq = st.selectbox("Frequência",options=freq)
         data_exec = st.date_input("Data Execução",value="today",format="DD/MM/YYYY")
