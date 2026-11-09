@@ -329,7 +329,7 @@ with comm:
     st.header("Em construção 🚧")
     st.dataframe(le_com())
 
-    FORM = st.form('Novo Reg. Curr', clear_on_submit = True)
+    FORM = st.form('Novo Reg. Com', clear_on_submit = True)
     FORM.subheader('Novo registro em Comunidade')
     col1, col2 = FORM.columns(2)
     with col1:
