@@ -237,6 +237,13 @@ def atualiza_infra(id_registro, coluna, valor):
     conexao.commit()
     cur.close()
 
+def atualiza_curr(id_registro, coluna, valor):
+    cur = conexao.cursor()
+    query = f'UPDATE "CURRICULO" SET "{coluna}" = %s WHERE "id" = %s'
+    cur.execute(query, (valor, id_registro))
+    conexao.commit()
+    cur.close()
+
 
 
 # ──---------------------------------------------- Interface Streamlit ──────────────────────────────
@@ -472,6 +479,23 @@ with curr:
     bt3 = FORM.form_submit_button('Inserir')
     if bt3:
         inserir_cur(indi,mt,Freq,idx_pess,data_exec,Stat,obs)
+
+    # ------------------------------ Edita Curr ----------------------------------------------------------------
+    st.subheader('Atualizar tabela Curriculo')
+    ID_curr = st.text_input('Id a ser atualizado:',key = 'CUa')
+    coluna_curr = st.selectbox('Selecione a coluna a ser modificada:',("atividade", "meta", "frequencia", "responsavel",
+        "data_execucao", "status", "observacoes"),key = 'CUb')
+    if coluna_curr == 'status':
+        novo_curr_status = st.selectbox('Novo Status:', options = ("Não iniciado","Em andamento","Concluido"),key = 'CUc')
+        valor_curr = novo_curr_status
+    elif coluna_curr == 'data_execucao':
+        valor_curr = st.date_input("Data Execução",value="today",format="DD/MM/YYYY",key = 'CUd')
+    else:
+        valor_curr = st.text_input('Novo valor:', key = 'CUe')
+    bt5 = st.button('Atualizar',key = 'CUf')
+    if bt5:        
+        atualiza_curr(ID_curr, coluna_curr, valor_curr)
+        st.rerun()
 
 #------------------------------------------------------------------------- COMUNI -------------------------------------------------------------------------------------------------------------------
 with comm:
