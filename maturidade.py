@@ -107,6 +107,31 @@ def le_cur():
     ''', conexao)
     return dados
 
+def le_cur2():
+    dados = pd.read_sql_query('SELECT * FROM "CURRICULO"', conexao)
+    pessoas = pd.read_sql_query('SELECT "id", "nome" FROM "PESSOAS"', conexao)
+
+    dados = dados.merge(
+        pessoas,
+        left_on="responsavel",
+        right_on="id",
+        how="left",
+        suffixes=("", "_pessoa")
+    )
+    dados = dados.drop(columns=["responsavel"]).rename(columns={"nome": "responsavel"})
+    dados = dados.drop(columns=["id_pessoa","criado_em"])
+    dados = dados.rename(columns={
+    "id": "ID",
+    "atividade": "Atividade",
+    "meta":"Meta",
+    "frequencia":"Frequência",
+    "responsavel":"Responsável",
+    "data_execucao":"Data Execução",
+    "status":"Status",
+    "observacoes":"Observações"
+    })
+    return dados
+
 def le_com():
     dados = pd.read_sql_query('''
     SELECT * FROM "COMUNIDADE"
@@ -347,7 +372,7 @@ with infra:
 #------------------------------------------------------------------------- CURR -------------------------------------------------------------------------------------------------------------------
 with curr:
     #---------------------------------------- Dados Brutos -------------------------------------------
-    Plan_CUR = le_cur()
+    Plan_CUR = le_cur2()
     st.dataframe(Plan_CUR)
 
     #----------------------------------------- Filtro por data ---------------------------------------
