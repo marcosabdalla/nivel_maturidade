@@ -414,7 +414,7 @@ with infra:
         valor_infra = st.date_input("Data Execução",value="today",format="DD/MM/YYYY",key = 'Ie')
     else:
         valor_infra = st.text_input('Novo valor:', key = 'Ib')
-    bt4 = st.button('Atualizar')
+    bt4 = st.button('Atualizar',key = 'If')
     if bt4:        
         atualiza_infra(ID_infra, coluna_infra, valor_infra)
         st.rerun()
