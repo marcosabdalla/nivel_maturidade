@@ -406,12 +406,12 @@ with infra:
     st.subheader('Atualizar tabela Infraestrutura')
     ID_infra = st.text_input('Id a ser atualizado:',key = 'Ia')
     coluna_infra = st.selectbox('Selecione a coluna a ser modificada:',("atividade", "meta", "frequencia", "responsavel",
-        "data_execucao", "status", "observacoes"))
+        "data_execucao", "status", "observacoes"),key = 'Ic')
     if coluna_infra == 'status':
-        novo_infra_status = st.selectbox('Novo Status:', options = ("Não iniciado","Em andamento","Concluido"),)
+        novo_infra_status = st.selectbox('Novo Status:', options = ("Não iniciado","Em andamento","Concluido"),key = 'Id')
         valor_infra = novo_infra_status
     elif coluna_infra == 'data_execucao':
-        valor_infra = st.date_input("Data Execução",value="today",format="DD/MM/YYYY")
+        valor_infra = st.date_input("Data Execução",value="today",format="DD/MM/YYYY",key = 'Ie')
     else:
         valor_infra = st.text_input('Novo valor:', key = 'Ib')
     bt4 = st.button('Atualizar')
