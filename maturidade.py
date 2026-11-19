@@ -627,6 +627,7 @@ with con:
 
 #------------------------------------------------------------------------- GUI -------------------------------------------------------------------------------------------------------------------
 with gui:
+    st.header("Guia de Uso")
     # Abrir o arquivo PDF
     with open("manual.pdf", "rb") as arquivo:
         pdf = arquivo.read()
@@ -638,7 +639,7 @@ with gui:
         file_name="GuiaUso.pdf",
         mime="application/pdf"
     )
-    st.header("Em construção 🚧")
+
     
 
 
