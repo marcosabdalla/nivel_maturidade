@@ -415,6 +415,16 @@ with curr:
 
     st.dataframe(df_filtrado)
 
+     #---------------------------------------- Metricas Curr ---------------------------------------------
+
+    stat_curr = df_filtrado["Status"]
+    met_stat_curr = pd.Series(stat_curr).value_counts()
+    col1, col2 = st.columns(2)
+    with col1:
+        st.dataframe(met_stat_curr)
+    with col2:
+        st.bar_chart(met_stat_curr,color=["#00008B"])
+
 
     
 
