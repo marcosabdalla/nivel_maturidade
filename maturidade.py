@@ -468,6 +468,16 @@ with comm:
     df_filtrado = Plan_COM.loc[mask]
 
     st.dataframe(df_filtrado)
+
+    #---------------------------------------- Metricas Com ---------------------------------------------
+
+    stat_com = df_filtrado["Status"]
+    met_stat_com = pd.Series(stat_com).value_counts()
+    col1, col2 = st.columns(2)
+    with col1:
+        st.dataframe(met_stat_com)
+    with col2:
+        st.bar_chart(met_stat_com,color=["#00008B"])
     
 
 
