@@ -230,6 +230,13 @@ def atualiza_gov(id_registro, coluna, valor):
     conexao.commit()
     cur.close()
 
+def atualiza_infra(id_registro, coluna, valor):
+    cur = conexao.cursor()
+    query = f'UPDATE "INFRAESTRUTURA" SET "{coluna}" = %s WHERE "id" = %s'
+    cur.execute(query, (valor, id_registro))
+    conexao.commit()
+    cur.close()
+
 
 
 # ──---------------------------------------------- Interface Streamlit ──────────────────────────────
@@ -393,6 +400,24 @@ with infra:
     bt3 = FORM.form_submit_button('Inserir')
     if bt3:
         inserir_infra(indi,mt,Freq,idx_pess,data_exec,Stat,obs)
+
+
+    # ------------------------------ Edita Infra ----------------------------------------------------------------
+    st.subheader('Atualizar tabela Infraestrutura')
+    ID_infra = st.text_input('Id a ser atualizado:')
+    coluna_infra = st.selectbox('Selecione a coluna a ser modificada:',("atividade", "meta", "frequencia", "responsavel",
+        "data_execucao", "status", "observacoes"))
+    if coluna_infra == 'status':
+        novo_infra_status = st.selectbox('Novo Status:', options = ("Não iniciado","Em andamento","Concluido"),)
+        valor_infra = novo_infra_status
+    elif coluna_infra == 'data_execucao':
+        valor_infra = st.date_input("Data Execução",value="today",format="DD/MM/YYYY")
+    else:
+        valor_infra = st.text_input('Novo valor:')
+    bt4 = st.button('Atualizar')
+    if bt4:        
+        atualiza_infra(ID_infra, coluna_infra, valor_infra)
+        st.rerun()
 
 #------------------------------------------------------------------------- CURR -------------------------------------------------------------------------------------------------------------------
 with curr:
