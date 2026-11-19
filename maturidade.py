@@ -244,6 +244,13 @@ def atualiza_curr(id_registro, coluna, valor):
     conexao.commit()
     cur.close()
 
+def atualiza_com(id_registro, coluna, valor):
+    cur = conexao.cursor()
+    query = f'UPDATE "COMUNIDADE" SET "{coluna}" = %s WHERE "id" = %s'
+    cur.execute(query, (valor, id_registro))
+    conexao.commit()
+    cur.close()
+
 
 
 # ──---------------------------------------------- Interface Streamlit ──────────────────────────────
@@ -529,9 +536,6 @@ with comm:
         st.bar_chart(met_stat_com,color=["#00008B"])
     
 
-
-    
-
     FORM = st.form('Novo Reg. Com', clear_on_submit = True)
     FORM.subheader('Novo registro em Comunidade')
     col1, col2 = FORM.columns(2)
@@ -551,6 +555,23 @@ with comm:
     bt3 = FORM.form_submit_button('Inserir')
     if bt3:
         inserir_om(indi,mt,Freq,idx_pess,data_exec,Stat,obs)
+
+     # ------------------------------ Edita Com ----------------------------------------------------------------
+    st.subheader('Atualizar tabela Comunidade')
+    ID_com = st.text_input('Id a ser atualizado:',key = 'COa')
+    coluna_com = st.selectbox('Selecione a coluna a ser modificada:',("atividade", "meta", "frequencia", "responsavel",
+        "data_execucao", "status", "observacoes"),key = 'COb')
+    if coluna_com == 'status':
+        novo_com_status = st.selectbox('Novo Status:', options = ("Não iniciado","Em andamento","Concluido"),key = 'COc')
+        valor_com = novo_com_status
+    elif coluna_com == 'data_execucao':
+        valor_com = st.date_input("Data Execução",value="today",format="DD/MM/YYYY",key = 'COd')
+    else:
+        valor_com = st.text_input('Novo valor:', key = 'COe')
+    bt6 = st.button('Atualizar',key = 'COf')
+    if bt6:        
+        atualiza_com(ID_com, coluna_com, valor_com)
+        st.rerun()
 
 #------------------------------------------------------------------------- PESS -------------------------------------------------------------------------------------------------------------------
 with pess:
