@@ -138,6 +138,31 @@ def le_com():
     ''', conexao)
     return dados
 
+def le_com2():
+    dados = pd.read_sql_query('SELECT * FROM "COMUNIDADE"', conexao)
+    pessoas = pd.read_sql_query('SELECT "id", "nome" FROM "PESSOAS"', conexao)
+
+    dados = dados.merge(
+        pessoas,
+        left_on="responsavel",
+        right_on="id",
+        how="left",
+        suffixes=("", "_pessoa")
+    )
+    dados = dados.drop(columns=["responsavel"]).rename(columns={"nome": "responsavel"})
+    dados = dados.drop(columns=["id_pessoa","criado_em"])
+    dados = dados.rename(columns={
+    "id": "ID",
+    "atividade": "Atividade",
+    "meta":"Meta",
+    "frequencia":"Frequência",
+    "responsavel":"Responsável",
+    "data_execucao":"Data Execução",
+    "status":"Status",
+    "observacoes":"Observações"
+    })
+    return dados
+
 def inserir_pessoa(nome, cargo):
     cur = conexao.cursor()
     cur.execute(
@@ -416,7 +441,7 @@ with curr:
 #------------------------------------------------------------------------- COMUNI -------------------------------------------------------------------------------------------------------------------
 with comm:
     #---------------------------------------- Dados Brutos -------------------------------------------
-    Plan_COM = le_com()
+    Plan_COM = le_com2()
     st.dataframe(Plan_COM)
 
     #----------------------------------------- Filtro por data ---------------------------------------
