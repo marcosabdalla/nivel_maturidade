@@ -413,7 +413,7 @@ with infra:
     elif coluna_infra == 'data_execucao':
         valor_infra = st.date_input("Data Execução",value="today",format="DD/MM/YYYY")
     else:
-        valor_infra = st.text_input('Novo valor:,'key = 'Ib')
+        valor_infra = st.text_input('Novo valor:', key = 'Ib')
     bt4 = st.button('Atualizar')
     if bt4:        
         atualiza_infra(ID_infra, coluna_infra, valor_infra)
