@@ -293,7 +293,36 @@ with gov:
         st.rerun()
 #------------------------------------------------------------------------- INFRA -------------------------------------------------------------------------------------------------------------------
 with infra:    
-    st.dataframe(le_infra())
+    #---------------------------------------- Dados Brutos -------------------------------------------
+    Plan_INFRA = le_infra()
+    st.dataframe(Plan_INFRA)
+
+    #----------------------------------------- Filtro por data ---------------------------------------
+    st.subheader('Filtro por data')
+    Plan_INFRA["Data Execução"] = pd.to_datetime(Plan_INFRA["Data Execução"])
+
+    col1, col2 = st.columns(2)
+    with col1:
+        data_inicio = st.date_input("Data inicial", value=Plan_INFRA["Data Execução"].min())
+    with col2:
+        data_fim = st.date_input("Data final", value=Plan_INFRA["Data Execução"].max())
+
+    mask = (Plan_INFRA["Data Execução"] >= pd.to_datetime(data_inicio)) & (Plan_INFRA["Data Execução"] <= pd.to_datetime(data_fim))
+    df_filtrado = Plan_INFRA.loc[mask]
+
+    st.dataframe(df_filtrado)
+
+    #---------------------------------------- Metricas INFRA ---------------------------------------------
+
+    stat_infra = df_filtrado["Status"]
+    met_stat_infra = pd.Series(stat_infra).value_counts()
+    col1, col2 = st.columns(2)
+    with col1:
+        st.dataframe(met_stat_infra)
+    with col2:
+        st.bar_chart(met_stat_infra,color=["#00008B"])
+
+    
 
     FORM = st.form('Novo Reg. Infra', clear_on_submit = True)
     FORM.subheader('Novo registro em Infraestrutura')
@@ -317,8 +346,27 @@ with infra:
 
 #------------------------------------------------------------------------- CURR -------------------------------------------------------------------------------------------------------------------
 with curr:
-    st.header("Em construção 🚧")
-    st.dataframe(le_cur())
+    #---------------------------------------- Dados Brutos -------------------------------------------
+    Plan_CUR = le_cur()
+    st.dataframe(Plan_CUR)
+
+    #----------------------------------------- Filtro por data ---------------------------------------
+    st.subheader('Filtro por data')
+    Plan_CUR["Data Execução"] = pd.to_datetime(Plan_CUR["Data Execução"])
+
+    col1, col2 = st.columns(2)
+    with col1:
+        data_inicio = st.date_input("Data inicial", value=Plan_CUR["Data Execução"].min())
+    with col2:
+        data_fim = st.date_input("Data final", value=Plan_CUR["Data Execução"].max())
+
+    mask = (Plan_CUR["Data Execução"] >= pd.to_datetime(data_inicio)) & (Plan_CUR["Data Execução"] <= pd.to_datetime(data_fim))
+    df_filtrado = Plan_CUR.loc[mask]
+
+    st.dataframe(df_filtrado)
+
+
+    
 
     FORM = st.form('Novo Reg. Curr', clear_on_submit = True)
     FORM.subheader('Novo registro em Curriculo')
@@ -342,8 +390,28 @@ with curr:
 
 #------------------------------------------------------------------------- COMUNI -------------------------------------------------------------------------------------------------------------------
 with comm:
-    st.header("Em construção 🚧")
-    st.dataframe(le_com())
+    #---------------------------------------- Dados Brutos -------------------------------------------
+    Plan_COM = le_com()
+    st.dataframe(Plan_COM)
+
+    #----------------------------------------- Filtro por data ---------------------------------------
+    st.subheader('Filtro por data')
+    Plan_COM["Data Execução"] = pd.to_datetime(Plan_COM["Data Execução"])
+
+    col1, col2 = st.columns(2)
+    with col1:
+        data_inicio = st.date_input("Data inicial", value=Plan_COM["Data Execução"].min())
+    with col2:
+        data_fim = st.date_input("Data final", value=Plan_COM["Data Execução"].max())
+
+    mask = (Plan_COM["Data Execução"] >= pd.to_datetime(data_inicio)) & (Plan_COM["Data Execução"] <= pd.to_datetime(data_fim))
+    df_filtrado = Plan_COM.loc[mask]
+
+    st.dataframe(df_filtrado)
+    
+
+
+    
 
     FORM = st.form('Novo Reg. Com', clear_on_submit = True)
     FORM.subheader('Novo registro em Comunidade')
