@@ -13,7 +13,7 @@ conexao = psycopg2.connect(
     password=st.secrets["db"]["password"],
     sslmode="require"
 )
-
+# ----
 # -------------------------------------------- Funcoes ----------------------------------------
 def le_pessoas():
     dados = pd.read_sql_query('''
